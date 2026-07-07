@@ -1,21 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { productImages } from './productImages';
 
-type Section = 'home' | 'about' | 'services' | 'products' | 'contact';
+type Section = 'home' | 'about' | 'services' | 'contact';
 
 const WHATSAPP_NUMBER = '2349152313648';
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
 const PHONE_DISPLAY = '09152313648';
 const PHONE_TEL = 'tel:+2349152313648';
-
-const orderWhatsAppLink = (productName: string, price: string) =>
-  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    `Hello Romoke Ayomide Jewellery Collection, I would like to order: ${productName} (${price}). Please confirm availability and payment details.`
-  )}`;
-
-const genericOrderLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-  "Hello Romoke Ayomide Jewellery Collection, I'm interested in this product."
-)}`;
+const TIKTOK_LINK = 'https://vm.tiktok.com/ZS9M6cPgpXsLs-uo7tX/';
 
 // ---------- Scroll reveal hook ----------
 function useReveal<T extends HTMLElement>() {
@@ -80,7 +71,6 @@ function Navbar({ onNavigate }: { onNavigate: (s: Section) => void }) {
     { label: 'Home', section: 'home' },
     { label: 'About', section: 'about' },
     { label: 'Services', section: 'services' },
-    { label: 'Products', section: 'products' },
     { label: 'Contact', section: 'contact' },
   ];
 
@@ -190,7 +180,7 @@ function Navbar({ onNavigate }: { onNavigate: (s: Section) => void }) {
 }
 
 // ---------- Hero ----------
-function Hero({ onShop }: { onShop: () => void }) {
+function Hero({ onContact }: { onContact: () => void }) {
   return (
     <section
       id="home"
@@ -232,10 +222,10 @@ function Hero({ onShop }: { onShop: () => void }) {
         <Reveal delay={450}>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
-              onClick={onShop}
+              onClick={onContact}
               className="bg-gold hover:bg-gold-light text-ink px-10 py-4 rounded-full font-semibold text-base tracking-wide transition-all duration-300 hover:shadow-gold hover:scale-105 w-full sm:w-auto"
             >
-              Shop Now
+              Contact Us
             </button>
             <a
               href={WHATSAPP_LINK}
@@ -243,7 +233,7 @@ function Hero({ onShop }: { onShop: () => void }) {
               rel="noopener noreferrer"
               className="border-2 border-gold text-gold hover:bg-gold hover:text-ink px-10 py-4 rounded-full font-semibold text-base tracking-wide transition-all duration-300 hover:scale-105 w-full sm:w-auto"
             >
-              Contact on WhatsApp
+              Chat on WhatsApp
             </a>
           </div>
         </Reveal>
@@ -260,7 +250,7 @@ function Hero({ onShop }: { onShop: () => void }) {
 }
 
 // ---------- Welcome Note ----------
-function WelcomeNote({ onShop }: { onShop: () => void }) {
+function WelcomeNote({ onContact }: { onContact: () => void }) {
   return (
     <section className="bg-cream py-20 sm:py-28">
       <div className="max-w-4xl mx-auto px-5 sm:px-8 text-center">
@@ -276,10 +266,10 @@ function WelcomeNote({ onShop }: { onShop: () => void }) {
         <Reveal delay={200}>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
             <button
-              onClick={onShop}
+              onClick={onContact}
               className="bg-ink hover:bg-ink/90 text-gold px-8 py-3.5 rounded-full font-semibold text-sm tracking-wide transition-all duration-300 hover:shadow-luxe hover:scale-105"
             >
-              Shop Now
+              Contact Us
             </button>
             <a
               href={WHATSAPP_LINK}
@@ -287,7 +277,7 @@ function WelcomeNote({ onShop }: { onShop: () => void }) {
               rel="noopener noreferrer"
               className="bg-gold hover:bg-gold-light text-ink px-8 py-3.5 rounded-full font-semibold text-sm tracking-wide transition-all duration-300 hover:shadow-gold hover:scale-105"
             >
-              Contact on WhatsApp
+              Chat on WhatsApp
             </a>
           </div>
         </Reveal>
@@ -456,7 +446,7 @@ const socials = [
   {
     name: 'TikTok',
     handle: '@romiluxe_jewelry',
-    href: 'https://www.tiktok.com/@romiluxe_jewelry',
+    href: TIKTOK_LINK,
     gradient: 'from-[#010101] to-[#252525]',
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7">
@@ -622,114 +612,6 @@ function Services() {
   );
 }
 
-// ---------- Products ----------
-const products = [
-  {
-    name: '(A Dozen / 12pcs) O2 Necklaces',
-    price: '₦12,000.00',
-    desc: 'Pack of 12 elegant O2 necklaces. Perfect for resellers and bulk buyers.',
-    badge: 'Wholesale',
-  },
-  {
-    name: 'Waist Chain',
-    price: '₦3,000.00',
-    desc: 'Trendy and stylish waist chain. Adds a beautiful accent to any outfit.',
-    badge: 'Popular',
-  },
-  {
-    name: 'Magnet Stud (Ears & Nose)',
-    price: '₦1,000.00',
-    desc: 'Magnetic studs suitable for both ears and nose — no piercing needed.',
-    badge: 'New',
-  },
-  {
-    name: 'Fake Piercing Sticker (Pack)',
-    price: '₦1,500.00',
-    desc: 'A pack of 84pcs piercing stickers. Fun, safe, and reusable.',
-    badge: 'New',
-  },
-  {
-    name: '3pcs VCA Bracelet',
-    price: '₦3,000.00',
-    desc: 'Set of 3 elegant Van Cleef-inspired bracelets. Luxurious and affordable.',
-    badge: 'Hot',
-  },
-  {
-    name: 'Hello Kitty (XL) Necklace',
-    price: '₦1,500.00',
-    desc: 'Oversized Hello Kitty pendant necklace. Bold, fun, and fashionable.',
-    badge: 'Catalogue',
-  },
-];
-
-function Products() {
-  return (
-    <section id="products" className="bg-ink py-20 sm:py-28">
-      <div className="max-w-7xl mx-auto px-5 sm:px-8">
-        <Reveal>
-          <div className="text-center mb-14">
-            <p className="text-gold text-xs tracking-[0.3em] uppercase font-medium mb-3">
-              Our Collection
-            </p>
-            <h2 className="font-display font-bold text-white text-3xl sm:text-4xl">
-              Featured Products
-            </h2>
-            <div className="w-16 h-px bg-gold mx-auto mt-6" />
-          </div>
-        </Reveal>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {products.map((p, i) => (
-            <Reveal key={p.name} delay={(i % 3) * 120}>
-              <div className="bg-white rounded-3xl overflow-hidden shadow-luxe hover:shadow-gold transition-all duration-500 hover:-translate-y-2 group flex flex-col h-full">
-                <div className="relative aspect-square overflow-hidden bg-cream">
-                  <img
-                    src={productImages[i]}
-                    alt={p.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-ink/0 group-hover:bg-ink/10 transition-colors duration-500" />
-                  <div className="absolute top-4 left-4 bg-gold text-ink text-xs font-semibold px-3 py-1 rounded-full">
-                    {p.badge}
-                  </div>
-                </div>
-                <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="font-display font-semibold text-ink text-lg mb-2">
-                    {p.name}
-                  </h3>
-                  <p className="text-gold font-bold text-xl mb-2">{p.price}</p>
-                  <p className="text-ink/60 text-sm leading-relaxed mb-5 flex-grow">
-                    {p.desc}
-                  </p>
-                  <a
-                    href={orderWhatsAppLink(p.name, p.price)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-ink hover:bg-gold hover:text-ink text-gold px-5 py-3 rounded-full font-semibold text-sm text-center transition-all duration-300 hover:shadow-gold"
-                  >
-                    Order Now
-                  </a>
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-        <Reveal delay={200}>
-          <div className="text-center mt-14">
-            <a
-              href={genericOrderLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-gold hover:bg-gold-light text-ink px-10 py-4 rounded-full font-semibold text-base transition-all duration-300 hover:shadow-gold hover:scale-105"
-            >
-              Order Any Product on WhatsApp
-            </a>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
 // ---------- Contact CTA ----------
 function ContactCTA() {
   return (
@@ -821,7 +703,7 @@ function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <a
-                  href="https://www.tiktok.com/@romiluxe_jewelry"
+                  href={TIKTOK_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/80 hover:text-gold transition-colors"
@@ -893,15 +775,14 @@ function App() {
     <div className="min-h-screen bg-cream font-sans antialiased">
       <Navbar onNavigate={scrollToSection} />
       <main>
-        <Hero onShop={() => scrollToSection('products')} />
-        <WelcomeNote onShop={() => scrollToSection('products')} />
+        <Hero onContact={() => scrollToSection('contact')} />
+        <WelcomeNote onContact={() => scrollToSection('contact')} />
         <Highlights />
         <About />
         <BusinessInfo />
         <SocialMedia />
         <WhyShop />
         <Services />
-        <Products />
         <ContactCTA />
       </main>
       <Footer />
